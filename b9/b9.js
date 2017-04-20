@@ -13,43 +13,17 @@ var casper = require('casper').create({
 
 var url = 'https://academy.b9lab.com/login';
 
-// var twitterId = 'satyanadella';
 var email = '';
 var auth = '';
-// var searchKey = 'gaga'
 var currentChapter = '';
 var currentChapterId = 0;
 var chapters = [];
 var lessons = [];
 
 
-
-// var processPage = function(currentChapterId) {
-//   casper.wait(2000, function() {
-//     console.log('waited 2 second');
-//   });
-//   this.echo("capturing page " + currentChapter[currentChapterCount]);
-//   this.captureSelector("drone-results-p" + currentChapter + ".png", '#seq_content');
-//
-//   if (!this.exists(".BVRRRatingNormalImage")) {
-//     return terminate.call(casper);
-//   }
-//
-//   currentPage++;
-//   this.echo("requesting next page: " + currentPage);
-//   this.thenClick('span.BVRRPageLink.BVRRNextPage a').then(function() {
-//     this.waitFor(function() {
-//       return startPage != 1;
-//     }, processPage, terminate);
-//   });
-// };
-
-
 function terminate() {
   this.echo('thats all folks. ').exit();
 }
-
-
 
 function getChapters() {
   var chapters = document.querySelectorAll('nav[aria-label="Course Navigation"] h3 a');
@@ -174,8 +148,6 @@ casper.then(function() {
       });
     })(currentChapterId);
 
-
-
     currentChapterId++;
 
   }
@@ -183,30 +155,5 @@ casper.then(function() {
 
 });
 
-// casper.wait(2000, function() {
-//   console.log('waited 2 seconds');
-//   console.log('the location is ' + this.getCurrentUrl());
-// });
-
-// var current = 1;
-// var end = 4;
-//
-// for (;current < end;) {
-//
-//   (function(cntr) {
-//     casper.thenOpen('http://example.com/page-' + cntr +'.html', function() {
-//           this.echo('casper.async: '+cntr);
-//           // here we can download stuff
-//     });
-//   })(current);
-//
-//   current++;
-//
-// }
-
-// casper.then(function() {
-//   this.echo(lessons.length + ' lessons found: ');
-//   this.echo(' - ' + lessons.join('\n - '))
-// });
 
 casper.run();
